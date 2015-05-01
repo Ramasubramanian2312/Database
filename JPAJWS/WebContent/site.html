@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="js/jquery-1.11.2.min.js"> </script>
+</head>
+<body>
+
+<h1> Sites </h1>
+
+<script>
+
+ 	$(function(){
+		//alert("hello Sites");
+ 		var newSite = {"id":14,"name":"Site 11","latitude":17.77,"longitude":4.35};
+		
+ 		removeSite(14);
+		updateSite(2, newsite);
+		
+		//createSite(newSite);
+		
+	}); 
+	
+	function updateSite(id, site)
+	{
+		$.ajax(
+		{
+			url: "http://localhost:8080/JPAJWS/api/site/"+id,
+			data: JSON.stringify(site),
+			type: "put",
+			dataType: "json",
+			contentType: "application/json",
+			success: function(response) {
+				console.log(response);
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		});
+	}
+	
+	function createSite(site)
+	{
+		$.ajax(
+		{
+			url: "http://localhost:8080/JPAJWS/api/site",
+			data: JSON.stringify(site),
+			type: "post",
+			dataType: "json",
+			contentType: "application/json",
+			success: function(response) {
+				console.log(response);
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		});
+	}
+	
+
+	function removeSite(id)
+	{
+		$.ajax(
+		{
+			url: "http://localhost:8080/JPAJWS/api/site/"+id,
+			type: "delete",
+			dataType: "json",
+			contentType: "application/json",
+			success: function(response) {
+				console.log(response);
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		});
+	}
+</script>
+</body>
+</html>
